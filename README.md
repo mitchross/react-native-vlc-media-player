@@ -77,10 +77,6 @@ npm run android
 
 See the [Sample App README](./sample/README.md) for detailed instructions.
 
-## Sample repo
-
-[VLC Media Player test](https://github.com/razorRun/react-native-vlc-media-player-test) (Legacy)
-
 ## Add it to your project
 
 Run

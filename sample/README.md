@@ -249,9 +249,15 @@ To test performance with the new architecture:
 
 ## Known Limitations
 
-See the main library's [KNOWN_ISSUES.md](../KNOWN_ISSUES.md) for details.
+See the main library's [KNOWN_ISSUES.md](../KNOWN_ISSUES.md) for complete details.
 
-**iOS Fabric Events**: When using Fabric on iOS, some event callbacks may not fire correctly. For full event support on iOS, use the legacy architecture.
+**iOS Fabric Events**: This sample app is configured with Fabric enabled on iOS by default. Note that when using Fabric on iOS, event callbacks may not fire correctly due to the current implementation. This is a documented limitation in the library. For full event support on iOS, switch to the legacy architecture by commenting out `ENV['RCT_NEW_ARCH_ENABLED'] = '1'` in `ios/Podfile`.
+
+Alternatively, you can:
+- Use Fabric on Android only (for performance benefits)
+- Keep iOS on legacy architecture (for full event support)
+
+This allows you to get the best of both worlds while the iOS Fabric event handling is being improved.
 
 ## Contributing
 
