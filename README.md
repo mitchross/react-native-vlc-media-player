@@ -32,7 +32,8 @@ import { VLCPlayer, type VLCPlayerRef, type VLCPlayerProps } from 'react-native-
 ```
 
 📖 **[Read the complete Migration Guide](./MIGRATION_GUIDE.md)**  
-💡 **[See TypeScript Examples](./TYPESCRIPT_EXAMPLES.md)**
+💡 **[See TypeScript Examples](./TYPESCRIPT_EXAMPLES.md)**  
+⚠️ **[Known Issues & Limitations](./KNOWN_ISSUES.md)**
 
 ---
 

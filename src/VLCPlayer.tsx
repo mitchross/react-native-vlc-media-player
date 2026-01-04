@@ -169,7 +169,7 @@ const VLCPlayer = forwardRef<VLCPlayerRef, VLCPlayerProps>((props, ref) => {
     }
   }, [props.onRecordingCreated]);
 
-  const handleSnapshot = useCallback((event: { nativeEvent: { success: boolean; path?: string; error?: string } }) => {
+  const handleSnapshot = useCallback((event: NativeEvent<OnSnapshotEvent>) => {
     if (event.nativeEvent.success && props.onSnapshot) {
       props.onSnapshot(event.nativeEvent);
     }

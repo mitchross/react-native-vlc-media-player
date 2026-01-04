@@ -106,7 +106,11 @@ public class ReactVlcPlayerViewManager extends SimpleViewManager<ReactVlcPlayerV
         videoView.setSrc(src);
     }
 
-    // Legacy method name for compatibility
+    /**
+     * Legacy method name for backward compatibility.
+     * @deprecated Use setSource instead. This method delegates to setSource.
+     */
+    @Deprecated
     @ReactProp(name = PROP_SRC)
     public void setSrc(final ReactVlcPlayerView videoView, @Nullable ReadableMap src) {
         setSource(videoView, src);
@@ -145,6 +149,8 @@ public class ReactVlcPlayerViewManager extends SimpleViewManager<ReactVlcPlayerV
     @Override
     @ReactProp(name = PROP_VOLUME, defaultFloat = 1.0f)
     public void setVolume(final ReactVlcPlayerView videoView, final int volume) {
+        // Note: Despite defaultFloat annotation (for backward compatibility),
+        // volume is cast to int as VLC expects integer values (0-100)
         videoView.setVolumeModifier(volume);
     }
 

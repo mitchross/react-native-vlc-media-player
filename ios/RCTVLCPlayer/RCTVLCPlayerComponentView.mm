@@ -30,8 +30,11 @@ using namespace facebook::react;
         static const auto defaultProps = std::make_shared<const RCTVLCPlayerProps>();
         _props = defaultProps;
         
-        // Create the legacy player view without event dispatcher
-        // We'll handle events through Fabric's event emitter
+        // TODO: The legacy player view is initialized with nil event dispatcher.
+        // In a complete Fabric migration, events should be forwarded through
+        // the Fabric event emitter system using _eventEmitter.
+        // For now, this allows the player to render and accept prop updates.
+        // Event handling in Fabric mode will be added in a future update.
         _playerView = [[RCTVLCPlayer alloc] initWithEventDispatcher:nil];
         _playerView.frame = self.bounds;
         _playerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;

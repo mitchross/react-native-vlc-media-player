@@ -151,6 +151,4 @@ export const Commands = codegenNativeCommands<NativeCommands>({
   supportedCommands: ['startRecording', 'stopRecording', 'stopPlayer', 'snapshot']
 });
 
-export default codegenNativeComponent<VLCPlayerNativeProps>('RCTVLCPlayer', {
-  excludedPlatforms: [],
-});
+export default codegenNativeComponent<VLCPlayerNativeProps>('RCTVLCPlayer');
