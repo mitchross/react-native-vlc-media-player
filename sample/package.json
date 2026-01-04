@@ -9,7 +9,8 @@
     "test": "jest",
     "lint": "eslint .",
     "clean": "cd android && ./gradlew clean && cd ../ios && xcodebuild clean && cd ..",
-    "pod-install": "cd ios && pod install && cd .."
+    "pod-install": "cd ios && pod install && cd ..",
+    "postinstall": "cd ios && pod install && cd .."
   },
   "dependencies": {
     "react": "18.2.0",
@@ -34,6 +35,8 @@
     "typescript": "5.0.4"
   },
   "engines": {
-    "node": ">=16"
-  }
+    "node": ">=16",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@8.15.0"
 }

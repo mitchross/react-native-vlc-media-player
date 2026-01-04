@@ -61,18 +61,26 @@ We've included a complete, production-ready sample app in the [`sample/`](./samp
 - ✅ Both iOS and Android configurations
 - ✅ Multiple video source testing (MP4, RTSP)
 - ✅ Advanced features (snapshots, recording, buffering states)
+- ✅ Supports npm, yarn, and **pnpm**
 
-**Quick Start:**
+**Quick Start (with pnpm):**
+```bash
+cd sample
+pnpm install  # Automatically runs pod install for iOS
+
+# iOS
+pnpm run ios
+
+# Android
+pnpm run android
+```
+
+**Or with npm:**
 ```bash
 cd sample
 npm install
-
-# iOS
 cd ios && pod install && cd ..
-npm run ios
-
-# Android
-npm run android
+npm run ios  # or npm run android
 ```
 
 See the [Sample App README](./sample/README.md) for detailed instructions.

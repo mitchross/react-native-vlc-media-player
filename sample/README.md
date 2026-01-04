@@ -38,20 +38,41 @@ This sample app showcases:
 ## Prerequisites
 
 - Node.js >= 16
+- Package manager: npm, yarn, or **pnpm** (recommended)
 - React Native development environment set up
 - For iOS: Xcode 14+, CocoaPods
 - For Android: Android Studio, JDK 11+
 
 ## Installation
 
-1. **Install dependencies:**
+This sample app supports multiple package managers. Choose your preferred option:
+
+### Using pnpm (Recommended)
+
+```bash
+cd sample
+pnpm install
+```
+
+The postinstall script will automatically run `pod install` for iOS.
+
+### Using npm
 
 ```bash
 cd sample
 npm install
 ```
 
-2. **iOS Setup:**
+### Using yarn
+
+```bash
+cd sample
+yarn install
+```
+
+### iOS Setup (if not using pnpm)
+
+If you're using npm or yarn, you may need to manually install pods:
 
 ```bash
 cd ios
@@ -59,7 +80,7 @@ pod install
 cd ..
 ```
 
-3. **Android Setup:**
+### Android Setup
 
 No additional setup required. Gradle will handle dependencies.
 
@@ -67,22 +88,54 @@ No additional setup required. Gradle will handle dependencies.
 
 ### iOS
 
+**With pnpm:**
 ```bash
-# Run on iOS simulator
+pnpm run ios
+
+# Or specify a device
+pnpm run ios -- --simulator="iPhone 14 Pro"
+```
+
+**With npm:**
+```bash
 npm run ios
 
 # Or specify a device
 npm run ios -- --simulator="iPhone 14 Pro"
 ```
 
+**With yarn:**
+```bash
+yarn ios
+
+# Or specify a device
+yarn ios -- --simulator="iPhone 14 Pro"
+```
+
 ### Android
 
+**With pnpm:**
 ```bash
-# Run on Android emulator or device
+pnpm run android
+
+# Or specify a device
+pnpm run android -- --deviceId=<device-id>
+```
+
+**With npm:**
+```bash
 npm run android
 
 # Or specify a device
 npm run android -- --deviceId=<device-id>
+```
+
+**With yarn:**
+```bash
+yarn android
+
+# Or specify a device
+yarn android -- --deviceId=<device-id>
 ```
 
 ## Architecture Modes
