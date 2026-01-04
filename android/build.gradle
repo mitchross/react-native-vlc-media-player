@@ -59,8 +59,4 @@ dependencies {
     implementation "com.facebook.react:react-android"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'org.videolan.android:libvlc-all:3.6.3'
-    
-    if (isNewArchitectureEnabled()) {
-        implementation "com.facebook.react:react-android"
-    }
 }

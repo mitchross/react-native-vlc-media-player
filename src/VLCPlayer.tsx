@@ -16,6 +16,16 @@ import VLCPlayerNativeComponent, {
   type OnSnapshotEvent,
 } from './VLCPlayerNativeComponent';
 
+// Type for components with setNativeProps (legacy support)
+interface NativePropsComponent {
+  setNativeProps: (props: Record<string, unknown>) => void;
+}
+
+// Type for native events
+interface NativeEvent<T> {
+  nativeEvent: T;
+}
+
 export type VLCPlayerSource = {
   uri: string;
   initType?: 1 | 2;
@@ -86,67 +96,67 @@ const VLCPlayer = forwardRef<VLCPlayerRef, VLCPlayerProps>((props, ref) => {
   const lastRecordingRef = useRef<string | null>(null);
 
   // Handle events
-  const handleLoadStart = useCallback((event: any) => {
+  const handleLoadStart = useCallback((_event: NativeEvent<Record<string, never>>) => {
     if (props.onLoadStart) {
       props.onLoadStart();
     }
   }, [props.onLoadStart]);
 
-  const handleLoad = useCallback((event: any) => {
+  const handleLoad = useCallback((event: NativeEvent<OnVideoLoadEvent>) => {
     if (props.onLoad) {
       props.onLoad(event.nativeEvent);
     }
   }, [props.onLoad]);
 
-  const handleOpen = useCallback((event: any) => {
+  const handleOpen = useCallback((_event: NativeEvent<Record<string, never>>) => {
     if (props.onOpen) {
       props.onOpen();
     }
   }, [props.onOpen]);
 
-  const handleProgress = useCallback((event: any) => {
+  const handleProgress = useCallback((event: NativeEvent<OnVideoProgressEvent>) => {
     if (props.onProgress) {
       props.onProgress(event.nativeEvent);
     }
   }, [props.onProgress]);
 
-  const handlePaused = useCallback((event: any) => {
+  const handlePaused = useCallback((_event: NativeEvent<OnVideoPausedEvent>) => {
     if (props.onPaused) {
       props.onPaused();
     }
   }, [props.onPaused]);
 
-  const handleStopped = useCallback((event: any) => {
+  const handleStopped = useCallback((_event: NativeEvent<OnVideoStoppedEvent>) => {
     if (props.onStopped) {
       props.onStopped();
     }
   }, [props.onStopped]);
 
-  const handlePlaying = useCallback((event: any) => {
+  const handlePlaying = useCallback((event: NativeEvent<OnVideoPlayingEvent>) => {
     if (props.onPlaying) {
       props.onPlaying(event.nativeEvent);
     }
   }, [props.onPlaying]);
 
-  const handleEnded = useCallback((event: any) => {
+  const handleEnded = useCallback((_event: NativeEvent<OnVideoEndedEvent>) => {
     if (props.onEnd) {
       props.onEnd();
     }
   }, [props.onEnd]);
 
-  const handleError = useCallback((event: any) => {
+  const handleError = useCallback((event: NativeEvent<OnVideoErrorEvent>) => {
     if (props.onError) {
       props.onError(event.nativeEvent);
     }
   }, [props.onError]);
 
-  const handleBuffering = useCallback((event: any) => {
+  const handleBuffering = useCallback((event: NativeEvent<OnVideoBufferingEvent>) => {
     if (props.onBuffering) {
       props.onBuffering(event.nativeEvent);
     }
   }, [props.onBuffering]);
 
-  const handleRecordingState = useCallback((event: any) => {
+  const handleRecordingState = useCallback((event: NativeEvent<OnRecordingStateEvent>) => {
     if (lastRecordingRef.current === event.nativeEvent.recordPath) {
       return;
     }
@@ -159,7 +169,7 @@ const VLCPlayer = forwardRef<VLCPlayerRef, VLCPlayerProps>((props, ref) => {
     }
   }, [props.onRecordingCreated]);
 
-  const handleSnapshot = useCallback((event: any) => {
+  const handleSnapshot = useCallback((event: { nativeEvent: { success: boolean; path?: string; error?: string } }) => {
     if (event.nativeEvent.success && props.onSnapshot) {
       props.onSnapshot(event.nativeEvent);
     }
@@ -169,12 +179,12 @@ const VLCPlayer = forwardRef<VLCPlayerRef, VLCPlayerProps>((props, ref) => {
     seek: (time: number) => {
       // Use setNativeProps for compatibility
       if (nativeRef.current && 'setNativeProps' in nativeRef.current) {
-        (nativeRef.current as any).setNativeProps({ seek: time });
+        (nativeRef.current as unknown as NativePropsComponent).setNativeProps({ seek: time });
       }
     },
     resume: (shouldResume: boolean) => {
       if (nativeRef.current && 'setNativeProps' in nativeRef.current) {
-        (nativeRef.current as any).setNativeProps({ resume: shouldResume });
+        (nativeRef.current as unknown as NativePropsComponent).setNativeProps({ resume: shouldResume });
       }
     },
     startRecording: (path: string) => {
@@ -199,12 +209,12 @@ const VLCPlayer = forwardRef<VLCPlayerRef, VLCPlayerProps>((props, ref) => {
     },
     changeVideoAspectRatio: (ratio: string) => {
       if (nativeRef.current && 'setNativeProps' in nativeRef.current) {
-        (nativeRef.current as any).setNativeProps({ videoAspectRatio: ratio });
+        (nativeRef.current as unknown as NativePropsComponent).setNativeProps({ videoAspectRatio: ratio });
       }
     },
     autoAspectRatio: (isAuto: boolean) => {
       if (nativeRef.current && 'setNativeProps' in nativeRef.current) {
-        (nativeRef.current as any).setNativeProps({ autoAspectRatio: isAuto });
+        (nativeRef.current as unknown as NativePropsComponent).setNativeProps({ autoAspectRatio: isAuto });
       }
     },
   }));
