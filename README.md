@@ -31,6 +31,9 @@ For TypeScript users, you can now benefit from improved type safety:
 import { VLCPlayer, type VLCPlayerRef, type VLCPlayerProps } from 'react-native-vlc-media-player/src';
 ```
 
+📖 **[Read the complete Migration Guide](./MIGRATION_GUIDE.md)**  
+💡 **[See TypeScript Examples](./TYPESCRIPT_EXAMPLES.md)**
+
 ---
 
 ## Supported RN Versions
