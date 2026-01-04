@@ -1,9 +1,43 @@
 # react-native-vlc-media-player
 
+## 🎉 New Architecture Support
+
+This library now supports React Native's **new architecture (Fabric UI layer)** for improved performance and future compatibility!
+
+- ✅ **Backward Compatible**: Works with both old and new architectures
+- ✅ **Fabric Support**: Full Fabric UI layer implementation for iOS and Android
+- ✅ **TypeScript First**: Complete TypeScript support with CodeGen specs
+- ✅ **Tested on RN 0.68+**: Compatible with React Native 0.68 and higher
+
+### Using with New Architecture
+
+If your app has the new architecture enabled:
+
+```typescript
+import { VLCPlayer } from 'react-native-vlc-media-player/src';
+// or
+import { VLCPlayer } from 'react-native-vlc-media-player';
+```
+
+The library will automatically use the Fabric implementation when available.
+
+### Migration from Legacy
+
+No changes required! The library maintains full backward compatibility. Your existing code will continue to work as-is.
+
+For TypeScript users, you can now benefit from improved type safety:
+
+```typescript
+import { VLCPlayer, type VLCPlayerRef, type VLCPlayerProps } from 'react-native-vlc-media-player/src';
+```
+
+---
+
 ## Supported RN Versions
 
 - 0.59 > 0.62 and up
 - PODs are updated to work with 0.61 and up (tested in 0.61.5, 0.62 and 0.63)
+- **New Architecture**: 0.68+ with `RCT_NEW_ARCH_ENABLED=1`
 
 ## Supported formats
 
@@ -217,6 +251,55 @@ VideoInfo example:
     ],
 }
 ```
+
+## Enabling the New Architecture
+
+### For New React Native Projects (0.68+)
+
+The new architecture is enabled by default in React Native 0.70+. For 0.68-0.69, enable it:
+
+#### iOS
+
+1. In your `ios/Podfile`, ensure you have:
+```ruby
+ENV['RCT_NEW_ARCH_ENABLED'] = '1'
+```
+
+2. Run:
+```bash
+cd ios
+pod install
+cd ..
+```
+
+#### Android
+
+1. In `android/gradle.properties`, add or update:
+```properties
+newArchEnabled=true
+```
+
+2. Clean and rebuild:
+```bash
+cd android
+./gradlew clean
+cd ..
+```
+
+### For Existing Projects
+
+If you're migrating an existing project to the new architecture:
+
+1. Follow the [React Native New Architecture Migration Guide](https://reactnative.dev/docs/new-architecture-intro)
+2. This library will automatically use Fabric when `RCT_NEW_ARCH_ENABLED` is set
+3. No code changes required in your application!
+
+### Verifying New Architecture is Active
+
+You can verify the new architecture is working by checking the native logs:
+
+- **iOS**: Look for "Fabric" mentions in Xcode console
+- **Android**: Look for "Fabric" or "FabricUIManager" in Logcat
 
 ## More formats
 
