@@ -20,14 +20,8 @@ export type OnVideoLoadEvent = Readonly<{
     width: Int32;
     height: Int32;
   }>;
-  audioTracks?: ReadonlyArray<Readonly<{
-    id: Int32;
-    name: string;
-  }>>;
-  textTracks?: ReadonlyArray<Readonly<{
-    id: Int32;
-    name: string;
-  }>>;
+  // Note: audioTracks and textTracks are not included due to CodeGen limitations
+  // with ReadonlyArray types in event payloads. These can be accessed via native methods.
 }>;
 
 export type OnVideoOpenEvent = Readonly<{
@@ -89,7 +83,8 @@ export type VideoSource = Readonly<{
   isAsset?: boolean;
   autoplay?: boolean;
   initType?: Int32;
-  initOptions?: ReadonlyArray<string>;
+  // Note: initOptions simplified to string to avoid CodeGen issues with ReadonlyArray
+  initOptions?: string;
   mainVer?: Int32;
   patchVer?: Int32;
 }>;
