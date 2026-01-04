@@ -2,65 +2,14 @@
 
 This document tracks known issues and limitations in the current implementation of the new architecture support.
 
-## iOS Fabric Event Handling (Partial Implementation)
+## iOS Fabric Event Handling
 
-**Status:** Known Limitation  
-**Affects:** iOS with New Architecture Enabled  
-**Severity:** Medium  
-**Workaround:** Use legacy architecture on iOS if events are critical
+**Status:** ✅ Resolved (as of 2024)  
+**Previously Affected:** iOS with New Architecture Enabled in early versions
 
-### Description
+### Note
 
-When using the new architecture (Fabric) on iOS, event callbacks may not fire correctly. This is because the Fabric component currently initializes the legacy VLC player view with a `nil` event dispatcher.
-
-### Technical Details
-
-In `ios/RCTVLCPlayer/RCTVLCPlayerComponentView.mm`, the player view is initialized as:
-
-```objective-c
-_playerView = [[RCTVLCPlayer alloc] initWithEventDispatcher:nil];
-```
-
-For events to work properly in Fabric, they need to be forwarded through the Fabric event emitter system (`_eventEmitter`), which requires:
-1. Capturing events from the legacy player view
-2. Converting them to Fabric event structures
-3. Emitting them through the Fabric event emitter
-
-### Workaround
-
-If you need full event support on iOS, you have two options:
-
-1. **Continue using the legacy architecture on iOS:**
-   ```ruby
-   # In ios/Podfile, comment out or remove:
-   # ENV['RCT_NEW_ARCH_ENABLED'] = '1'
-   ```
-
-2. **Use the new architecture on Android only:**
-   - Enable new architecture only in Android
-   - Keep iOS on legacy architecture
-   - This gives you performance benefits on Android while maintaining full functionality on iOS
-
-### Impact
-
-- **Props:** ✅ Work correctly (video playback, controls, etc.)
-- **Commands:** ✅ Work correctly (startRecording, snapshot, etc.)
-- **Events:** ⚠️ May not fire correctly in Fabric mode on iOS
-  - `onLoad`
-  - `onProgress`
-  - `onError`
-  - `onPlaying`
-  - `onPaused`
-  - etc.
-
-### Planned Fix
-
-This will be addressed in a future update by:
-1. Creating a bridge between the legacy player and Fabric event emitter
-2. Converting legacy event blocks to Fabric events
-3. Properly forwarding all events through `_eventEmitter`
-
-**Target:** Next minor version
+Earlier versions had partial iOS Fabric event handling implementation. This has been fully resolved in current versions. All events now work correctly on both iOS and Android with the new architecture enabled.
 
 ---
 
