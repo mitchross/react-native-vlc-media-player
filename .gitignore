@@ -123,3 +123,11 @@ local.properties
 # MacOS
 .DS_Store
 
+# Sample app
+sample/node_modules/
+sample/ios/Pods/
+sample/android/.gradle/
+sample/android/build/
+sample/android/app/build/
+sample/.expo/
+

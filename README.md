@@ -33,7 +33,8 @@ import { VLCPlayer, type VLCPlayerRef, type VLCPlayerProps } from 'react-native-
 
 📖 **[Read the complete Migration Guide](./MIGRATION_GUIDE.md)**  
 💡 **[See TypeScript Examples](./TYPESCRIPT_EXAMPLES.md)**  
-⚠️ **[Known Issues & Limitations](./KNOWN_ISSUES.md)**
+⚠️ **[Known Issues & Limitations](./KNOWN_ISSUES.md)**  
+🎮 **[Try the Sample App](./sample/README.md)**
 
 ---
 
@@ -49,9 +50,36 @@ Support for network streams, RTSP, RTP, RTMP, HLS, MMS.
 Play all files, [in all formats, including exotic ones, like the classic VLC media player.](#-More-formats)
 Play MKV, multiple audio tracks (including 5.1), and subtitles tracks (including SSA!)
 
+## Sample App
+
+🎮 **NEW: Comprehensive sample app included!**
+
+We've included a complete, production-ready sample app in the [`sample/`](./sample) directory that demonstrates:
+
+- ✅ All VLC player features (playback, seek, volume, aspect ratio, etc.)
+- ✅ New architecture (Fabric) support with TypeScript
+- ✅ Both iOS and Android configurations
+- ✅ Multiple video source testing (MP4, RTSP)
+- ✅ Advanced features (snapshots, recording, buffering states)
+
+**Quick Start:**
+```bash
+cd sample
+npm install
+
+# iOS
+cd ios && pod install && cd ..
+npm run ios
+
+# Android
+npm run android
+```
+
+See the [Sample App README](./sample/README.md) for detailed instructions.
+
 ## Sample repo
 
-[VLC Media Player test](https://github.com/razorRun/react-native-vlc-media-player-test)
+[VLC Media Player test](https://github.com/razorRun/react-native-vlc-media-player-test) (Legacy)
 
 ## Add it to your project
 
