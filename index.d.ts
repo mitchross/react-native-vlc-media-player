@@ -2,6 +2,12 @@ import type { Component } from "react";
 import { StyleProp, ViewStyle } from "react-native";
 
 /**
+ * @note This library now supports the React Native new architecture (Fabric).
+ * Import from 'react-native-vlc-media-player/src' for TypeScript with new architecture support.
+ * The default export maintains backward compatibility with the legacy architecture.
+ */
+
+/**
  * Video aspect ratio type
  */
 export type PlayerAspectRatio = "16:9" | "1:1" | "4:3" | "3:2" | "21:9" | "9:16";

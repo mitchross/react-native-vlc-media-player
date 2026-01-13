@@ -35,5 +35,14 @@
     "@expo/config-plugins": "^7.2.2",
     "@types/react": "~18.2.14"
   },
-  "typings": "index.d.ts"
+  "typings": "index.d.ts",
+  "codegenConfig": {
+    "name": "RNVLCPlayerSpec",
+    "type": "components",
+    "jsSrcsDir": "./src",
+    "android": {
+      "javaPackageName": "com.yuanzhou.vlc"
+    },
+    "ios": {}
+  }
 }

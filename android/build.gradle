@@ -1,4 +1,9 @@
 apply plugin: 'com.android.library'
+
+def isNewArchitectureEnabled() {
+    return project.hasProperty("newArchEnabled") && project.newArchEnabled == "true"
+}
+
 android {
     namespace 'com.yuanzhou.vlc'
     compileSdkVersion 35
@@ -9,10 +14,19 @@ android {
         versionCode 1
         versionName "1.0"
         consumerProguardFiles("proguard-rules.pro")
+        
+        buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
+        
         ndk {
             abiFilters 'armeabi-v7a','x86_64','arm64-v8a','x86'
         }
     }
+    
+    buildFeatures {
+        buildConfig true
+        prefab isNewArchitectureEnabled()
+    }
+    
     buildTypes {
         release {
             minifyEnabled false
@@ -42,7 +56,7 @@ repositories {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.facebook.react:react-native:+"
+    implementation "com.facebook.react:react-android"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'org.videolan.android:libvlc-all:3.6.3'
 }
